@@ -6,7 +6,7 @@ const mapping = {
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"],
     obj = JSON.parse($response.body);
 obj.Attention = "Chúc mừng bạn!";
-var j2 = {
+var locket02 = {
         is_sandbox: !1,
         ownership_type: "PURCHASED",
         billing_issues_detected_at: null,
@@ -18,7 +18,7 @@ var j2 = {
         purchase_date: "2025-09-02T01:04:17Z",
         store: "app_store"
     },
-    j1 = {
+    locket01 = {
         grace_period_expires_date: null,
         purchase_date: "2025-09-02T01:04:17Z",
         product_identifier: "com.locket02.premium.yearly",
@@ -27,8 +27,8 @@ var j2 = {
 const match = Object.keys(mapping).find(e => ua.includes(e));
 if (match) {
     let [e, s] = mapping[match];
-    s ? (j1.product_identifier = s, obj.subscriber.subscriptions[s] = j2) : obj.subscriber.subscriptions["com.locket02.premium.yearly"] = j2, obj.subscriber.entitlements[e] = j1
-} else obj.subscriber.subscriptions["com.locket02.premium.yearly"] = j2, obj.subscriber.entitlements.pro = j1;
+    s ? (locket01.product_identifier = s, obj.subscriber.subscriptions[s] = locket02) : obj.subscriber.subscriptions["com.locket02.premium.yearly"] = locket02, obj.subscriber.entitlements[e] = locket01
+} else obj.subscriber.subscriptions["com.locket02.premium.yearly"] = locket02, obj.subscriber.entitlements.pro = locket01;
 $done({
     body: JSON.stringify(obj)
 });
